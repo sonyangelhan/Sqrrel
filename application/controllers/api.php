@@ -300,8 +300,8 @@ class Api extends CI_Controller
         $token = $this->input->post('token');
         $secret = $this->input->post('secret');
         $this->session->set_userdata(['twitterToken' => $token, 'twitterSecret' => $secret]);
-//        echo "token = $token<br>";
-//        echo "secret = $secret";
+        echo "token = $token<br>";
+        echo "secret = $secret";
         redirect ('/dashboard');
     }
 
@@ -334,7 +334,6 @@ class Api extends CI_Controller
                      ->performRequest();
 
         $dataArray = json_decode($data,true);
-//        echo "$dataArray";
         $tweets = array();
 
         foreach ($dataArray['statuses'] as $key => $value) {
@@ -354,25 +353,20 @@ class Api extends CI_Controller
     public function tweetTest(){
         require_once(APPPATH.'libraries/TwitterAPIExchange.php');
 
-
-
         $token = $this->session->userdata('twitterToken');
         $secret = $this->session->userdata('twitterSecret');
 
-        echo "token = ".$token."<BR>";
-        echo "secret = ".$secret."<BR>";
-
         /** Set access tokens here - see: https://dev.twitter.com/apps/ **/
         $settings = array(
-            'oauth_access_token' => '2384058913-MQOfL6EnIsNyAKIO5vlFPsyd47VfsrMblk7PKJf',
-            'oauth_access_token_secret' => '8nye90vGouqVhhhh86gLCNt7258u9gP6ifSr33rmVT4rY',
+            'oauth_access_token' => $token,
+            'oauth_access_token_secret' => $secret,
             'consumer_key' => "uH1Sqmg4zX6cp3Flc6ICw",
             'consumer_secret' => "8IZdciwJtyH1t5ilBMqSoyk0qk1CrC3MbyWz1sQNM"
         );
 
 
         $url = 'https://api.twitter.com/1.1/search/tweets.json';
-        $getfield = '?q=#terry&count=100';
+        $getfield = '?q=terry';
         $requestMethod = 'GET';
         $twitter = new TwitterAPIExchange($settings);
 
@@ -383,8 +377,7 @@ class Api extends CI_Controller
         var_dump($data);
 
         $dataArray = json_decode($data,true);
-//        print_r($dataArray);
+        print_r($dataArray);
     }
-
 
 }
