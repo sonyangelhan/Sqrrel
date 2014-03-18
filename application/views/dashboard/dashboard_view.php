@@ -131,7 +131,7 @@
                 // user authenticated with Firebase
 
                 alert('User ID: ' + user.id + ', Provider: ' + user.provider + 'token:' + user.accessToken + 'secret:' + user.accessTokenSecret);
-                post_to_url('/Sqrrel/index.php/api/twitterOath', {'token':user.accessToken,'secret':user.accessTokenSecret});
+                post_to_url('/index.php/api/twitterOath', {'token':user.accessToken,'secret':user.accessTokenSecret});
               } else {
                 // user is logged out
               }
