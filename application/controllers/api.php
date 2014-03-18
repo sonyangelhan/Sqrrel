@@ -19,7 +19,7 @@ class Api extends CI_Controller
     private function _require_login()
     {
         if ($this->session->userdata('user_id') == false) {
-            $this->output->set_output(json_encode(['result' => 0, 'error' => 'You are not authorized.']));
+            $this->output->set_output(json_encode(array('result' => 0, 'error' => 'You are not authorized.')));
             return false;
         }
     }
@@ -32,20 +32,20 @@ class Api extends CI_Controller
         $login = $this->input->post('login');
         $password = $this->input->post('password');
 
-        $result = $this->user_model->get([
+        $result = $this->user_model->get(array(
             'login' => $login,
             'password' => hash('sha256', $password . SALT)
-        ]);
+        ));
         
         $this->output->set_content_type('application_json');
         
         if ($result) {
-            $this->session->set_userdata(['user_id' => $result[0]['user_id']]);
-            $this->output->set_output(json_encode(['result' => 1]));
+            $this->session->set_userdata(array('user_id' => $result[0]['user_id']));
+            $this->output->set_output(json_encode(array('result' => 1)));
             return false;
         }
         
-        $this->output->set_output(json_encode(['result' => 0]));
+        $this->output->set_output(json_encode(array('result' => 0)));
     }
     
     // ------------------------------------------------------------------------
@@ -59,7 +59,7 @@ class Api extends CI_Controller
         $this->form_validation->set_rules('password', 'Password', 'required|min_length[4]|max_length[16]|matches[confirm_password]');
         
         if ($this->form_validation->run() == false) {
-            $this->output->set_output(json_encode(['result' => 0, 'error' => $this->form_validation->error_array()]));
+            $this->output->set_output(json_encode(array('result' => 0, 'error' => $this->form_validation->error_array())));
             return false;
         }
         
@@ -68,19 +68,19 @@ class Api extends CI_Controller
         $password = $this->input->post('password');
         $confirm_password = $this->input->post('confirm_password');
 
-        $user_id = $this->user_model->insert([
+        $user_id = $this->user_model->insert(array(
             'login' => $login,
             'password' => hash('sha256', $password . SALT),
             'email' => $email
-        ]);
+        ));
         
         if ($user_id) {
-            $this->session->set_userdata(['user_id' => $user_id]);
-            $this->output->set_output(json_encode(['result' => 1]));
+            $this->session->set_userdata(array('user_id' => $user_id));
+            $this->output->set_output(json_encode(array('result' => 1)));
             return false;
         }
         
-        $this->output->set_output(json_encode(['result' => 0, 'error' => 'User not created.']));
+        $this->output->set_output(json_encode(array('result' => 0, 'error' => 'User not created.')));
     }
     
     // ------------------------------------------------------------------------
@@ -90,14 +90,14 @@ class Api extends CI_Controller
         $this->_require_login();
         
         if ($id != null) {
-            $result = $this->todo_model->get([
+            $result = $this->todo_model->get(array(
                 'todo_id' => $id,
                 'user_id' => $this->session->userdata('user_id')
-            ]);
+            ));
         } else {
-            $result = $this->todo_model->get([
+            $result = $this->todo_model->get(array(
                 'user_id' => $this->session->userdata('user_id')
-            ]);
+            ));
         }
         
         $this->output->set_output(json_encode($result));
@@ -111,37 +111,37 @@ class Api extends CI_Controller
         
         $this->form_validation->set_rules('content', 'Content', 'required|max_length[255]');
         if ($this->form_validation->run() == false) {
-            $this->output->set_output(json_encode([
+            $this->output->set_output(json_encode(array(
                 'result' => 0,
                 'error' => $this->form_validation->error_array()
-            ]));
+            )));
             
             return false;
         }
         
-        $result = $this->todo_model->insert([
+        $result = $this->todo_model->insert(array(
             'content' => $this->input->post('content'),
             'user_id' => $this->session->userdata('user_id')
-        ]);
+        ));
         
         if ($result) {
             
             // Get the freshest entry for the DOM
             
-            $this->output->set_output(json_encode([
+            $this->output->set_output(json_encode(array(
                 'result' => 1,
                 'data' => array(
                     'todo_id' => $result,
                     'content' => $this->input->post('content'),
                     'complete' => 0
                 )
-            ]));
+            )));
             return false;
         }
-        $this->output->set_output(json_encode([
+        $this->output->set_output(json_encode(array(
             'result' => 0,
             'error' => 'Could not insert record'
-        ]));
+        )));
     }
     
     // ------------------------------------------------------------------------
@@ -152,16 +152,16 @@ class Api extends CI_Controller
         $todo_id = $this->input->post('todo_id');
         $completed = $this->input->post('completed');
         
-        $result = $this->todo_model->update([
+        $result = $this->todo_model->update(array(
             'completed' => $completed
-        ], $todo_id);
+        ), $todo_id);
         
         if ($result) {
-            $this->output->set_output(json_encode(['result' => 1]));
+            $this->output->set_output(json_encode(array('result' => 1)));
             return false;
         }
         
-        $this->output->set_output(json_encode(['result' => 0]));
+        $this->output->set_output(json_encode(array('result' => 0)));
         return false;
     }
     
@@ -171,20 +171,20 @@ class Api extends CI_Controller
     {
         $this->_require_login();
         
-        $result = $this->todo_model->delete([
+        $result = $this->todo_model->delete(array(
             'todo_id' => $this->input->post('todo_id'),
             'user_id' => $this->session->userdata('user_id')
-        ]);
+        ));
         
         if ($result) {
-            $this->output->set_output(json_encode(['result' => 1]));
+            $this->output->set_output(json_encode(array('result' => 1)));
             return false;
         }
         
-        $this->output->set_output(json_encode([
+        $this->output->set_output(json_encode(array(
             'result' => 0,
             'message' => 'Could not delete.'
-        ]));
+        )));
     }
     
     // ------------------------------------------------------------------------
@@ -194,14 +194,14 @@ class Api extends CI_Controller
         $this->_require_login();
         
         if ($id != null) {
-            $result = $this->note_model->get([
+            $result = $this->note_model->get(array(
                 'note_id' => $id,
                 'user_id' => $this->session->userdata('user_id')
-            ]);
+            ));
         } else {
-            $result = $this->note_model->get([
+            $result = $this->note_model->get(array(
                 'user_id' => $this->session->userdata('user_id')
-            ]);
+            ));
         }
         
         $this->output->set_output(json_encode($result));
@@ -216,37 +216,37 @@ class Api extends CI_Controller
         $this->form_validation->set_rules('title', 'title', 'required|max_length[50]');
         $this->form_validation->set_rules('content', 'Content', 'required|max_length[500]');
         if ($this->form_validation->run() == false) {
-            $this->output->set_output(json_encode([
+            $this->output->set_output(json_encode(array(
                 'result' => 0,
                 'error' => $this->form_validation->error_array()
-            ]));
+            )));
             
             return false;
         }
         
-        $result = $this->note_model->insert([
+        $result = $this->note_model->insert(array(
             'title' => $this->input->post('title'),
             'content' => $this->input->post('content'),
             'user_id' => $this->session->userdata('user_id')
-        ]);
+        ));
         
         if ($result) {
             
             // Get the freshest entry for the DOM
-            $this->output->set_output(json_encode([
+            $this->output->set_output(json_encode(array(
                 'result' => 1,
                 'data' => array(
                     'note_id' => $result,
                     'title' => $this->input->post('title'),
                     'content' => $this->input->post('content'),
                 )
-            ]));
+            )));
             return false;
         }
-        $this->output->set_output(json_encode([
+        $this->output->set_output(json_encode(array(
             'result' => 0,
             'error' => 'Could not insert record'
-        ]));
+        )));
     }
     
     // ------------------------------------------------------------------------
@@ -257,15 +257,15 @@ class Api extends CI_Controller
         
         $note_id = $this->input->post('note_id');
         
-        $result = $this->note_model->update([
+        $result = $this->note_model->update(array(
             'title' => $this->input->post('title'),
             'content' => $this->input->post('content')
-        ], $note_id);
+        ), $note_id);
 
         // Do not check the $result because if no affected rows happen
         // they will think its an error
         
-        $this->output->set_output(json_encode(['result' => 1]));
+        $this->output->set_output(json_encode(array('result' => 1)));
         return false;
     }
     
@@ -275,20 +275,20 @@ class Api extends CI_Controller
     {
         $this->_require_login();
         
-        $result = $this->note_model->delete([
+        $result = $this->note_model->delete(array(
             'note_id' => $this->input->post('note_id'),
             'user_id' => $this->session->userdata('user_id')
-        ]);
+        ));
         
         if ($result) {
-            $this->output->set_output(json_encode(['result' => 1]));
+            $this->output->set_output(json_encode(array('result' => 1)));
             return false;
         }
         
-        $this->output->set_output(json_encode([
+        $this->output->set_output(json_encode(array(
             'result' => 0,
             'message' => 'Could not delete.'
-        ]));
+        )));
     }
     
     // ------------------------------------------------------------------------
@@ -299,7 +299,7 @@ class Api extends CI_Controller
     {
         $token = $this->input->post('token');
         $secret = $this->input->post('secret');
-        $this->session->set_userdata(['twitterToken' => $token, 'twitterSecret' => $secret]);
+        $this->session->set_userdata(array('twitterToken' => $token, 'twitterSecret' => $secret));
 //        echo "token = $token<br>";
 //        echo "secret = $secret";
         redirect ('/dashboard');

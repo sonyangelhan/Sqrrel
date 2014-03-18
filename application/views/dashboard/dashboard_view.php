@@ -136,13 +136,15 @@
         /*Terry's update, to send query and parse return json and render into tweets*/ 
       $('#submit').click(function() {
         $('.tweets').html('');
-        var searchVal = $('#query').val();
+        var searchValRaw = $('#query').val();
+        searchVal = searchValRaw.replace("#","%23").replace("@", "%40");;
 //            alert('yes!');
+//alert(searchVal);
           if(searchVal !== '') {
               $.get('api/getTweets?query='+searchVal, function(returnData) {
                   /* If the returnData is empty then display message to user
                    * else our returned data results in the table.  */
-                   alert(returnData);
+//                   alert(returnData);
                   var obj = $.parseJSON(returnData);
 
                   /*no return data*/
