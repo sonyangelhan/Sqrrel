@@ -1,38 +1,43 @@
-<div class="row">
+<div id="board" class="row">
 
-	<div id="tweetboard-main" class="col-md-6">
+	<!--Tweetboard-->
+    <div id="tweetboard-main" class="col-md-5">
+        <h3>Tweetboard</h3>
+        <div class="form-horizontal">
+          <div class="row">
+            <div class="col-md-4">
+                <input type="text" class="form-control input_query" name="query" id="query" placeholder="New Query Term...">
+            </div>
+            <div class="col-md-8">
+                <button id="submit" class="btn btn-success btn-sm"><i class="fa fa-search"></i> Search</button>
+                <a class="btn btn-info btn-sm" id="login"><i class="fa fa-twitter"></i> Login with Twitter</a>
+            </div>
+          </div>
+        </div>
 
-        <!-- Terry's update-->
-        <a class="btn btn-success btn-sm" id="login">Login with Twitter</a>
-
-
-<div class="form-inline">
-  <div class="form-group">
-    <input type="text" class="form-control" name="query" id="query" placeholder="Enter query term...">
-  </div>
-
-  <button type="" id="submit" class="btn btn-default">Search</button>
-</div>
-
-
-<div class="tweets">
-
-<!--
-<blockquote class="twitter-tweet"><p>GRAB <a href="https://twitter.com/search?q=%23skate&amp;src=hash">#skate</a> <a href="https://twitter.com/search?q=%23skateboard&amp;src=hash">#skateboard</a> <a href="https://twitter.com/search?q=%23skateboarding&amp;src=hash">#skateboarding</a> <a href="http://t.co/RuyaivWiOB">pic.twitter.com/RuyaivWiOB</a></p>&mdash; Skate (@SKATE) <a href="https://twitter.com/SKATE/statuses/392351081310609409">October 21, 2013</a></blockquote>
-
-<blockquote class="twitter-tweet"><a href="https://twitter.com/twitterapi/status/443058232240914400"></a></blockquote>
-<blockquote class="twitter-tweet"><a href="https://twitter.com/twitterapi/status/443058221889384450"></a></blockquote>
-<blockquote class="twitter-tweet"><a href="https://twitter.com/twitterapi/status/443058206735339500"></a></blockquote>
-<blockquote class="twitter-tweet"><a href="https://twitter.com/twitterapi/status/443058205841981440"></a></blockquote>
-<blockquote class="twitter-tweet"><a href="https://twitter.com/twitterapi/status/443058202880802800"></a></blockquote>
-<blockquote class="twitter-tweet"><a href="https://twitter.com/twitterapi/status/443058201404010500"></a></blockquote>
--->
-</div>
+        <hr>
 
 
+        <div class="tweets col-md-10 col-md-offset-1">
+
+        <!--
+        <blockquote class="twitter-tweet"><p>GRAB <a href="https://twitter.com/search?q=%23skate&amp;src=hash">#skate</a> <a href="https://twitter.com/search?q=%23skateboard&amp;src=hash">#skateboard</a> <a href="https://twitter.com/search?q=%23skateboarding&amp;src=hash">#skateboarding</a> <a href="http://t.co/RuyaivWiOB">pic.twitter.com/RuyaivWiOB</a></p>&mdash; Skate (@SKATE) <a href="https://twitter.com/SKATE/statuses/392351081310609409">October 21, 2013</a></blockquote>
+        <blockquote class="twitter-tweet"><p>GRAB <a href="https://twitter.com/search?q=%23skate&amp;src=hash">#skate</a> <a href="https://twitter.com/search?q=%23skateboard&amp;src=hash">#skateboard</a> <a href="https://twitter.com/search?q=%23skateboarding&amp;src=hash">#skateboarding</a> <a href="http://t.co/RuyaivWiOB">pic.twitter.com/RuyaivWiOB</a></p>&mdash; Skate (@SKATE) <a href="https://twitter.com/SKATE/statuses/392351081310609409">October 21, 2013</a></blockquote>
+
+        <blockquote class="twitter-tweet"><a href="https://twitter.com/twitterapi/status/443058232240914400"></a></blockquote>
+        <blockquote class="twitter-tweet"><a href="https://twitter.com/twitterapi/status/443058221889384450"></a></blockquote>
+        <blockquote class="twitter-tweet"><a href="https://twitter.com/twitterapi/status/443058206735339500"></a></blockquote>
+        <blockquote class="twitter-tweet"><a href="https://twitter.com/twitterapi/status/443058205841981440"></a></blockquote>
+        <blockquote class="twitter-tweet"><a href="https://twitter.com/twitterapi/status/443058202880802800"></a></blockquote>
+        <blockquote class="twitter-tweet"><a href="https://twitter.com/twitterapi/status/443058201404010500"></a></blockquote>
+        -->
+        </div>
 	</div>
 
-	<div id="dashboard-main" class="col-md-6">
+    <!--Dashboard-->
+	<div id="dashboard-main" class="col-md-6 col-md-offset-1">
+        
+        <!--To-Do-->
         <h3>To-Do</h3>
         <form id="create_todo" class="form-horizontal" method="post" action="<?=site_url('api/create_todo')?>">
             <div class="input-append">
@@ -52,6 +57,8 @@
             </div>
         </div>
         <hr>
+
+        <!--Note-->
         <h3>Note</h3>
 		<form id="create_note" class="form-horizontal" method="post" action="<?=site_url('api/create_note')?>">
             <div class="input-append">
@@ -124,7 +131,7 @@
                 // user authenticated with Firebase
 
                 alert('User ID: ' + user.id + ', Provider: ' + user.provider + 'token:' + user.accessToken + 'secret:' + user.accessTokenSecret);
-                post_to_url('/index.php/api/twitterOath', {'token':user.accessToken,'secret':user.accessTokenSecret});
+                post_to_url('/Sqrrel/index.php/api/twitterOath', {'token':user.accessToken,'secret':user.accessTokenSecret});
               } else {
                 // user is logged out
               }

@@ -1,23 +1,28 @@
 <div class="row">
+	<div class="col-md-4 col-md-offset-4 sqrrel-brand">
+		<h1>Sqrrel</h1>
+		<h2>Social & Lean CRM</h2>
+	</div>
+</div>
+
+<div class="row">
 	<div class="col-md-4 col-md-offset-4">
 		<form id="login_form" class="form-horizontal" role="form" method="post" action="<?=site_url('api/login')?>">
 			
 			<div class="form-group">
-				<label class="col-sm-4 control-label">Login</label>
-				<div class="col-sm-8">
-					<input type="text" name="login" class="form-control">
+				<div class="col-sm-8 col-sm-offset-2">
+					<input type="text" name="login" class="form-control" placeholder="login name">
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="col-sm-4 control-label">Password</label>
-				<div class="col-sm-8">
-					<input type="password" name="password" class="form-control">
+				<div class="col-sm-8 col-sm-offset-2">
+					<input type="password" name="password" class="form-control" placeholder="password">
 				</div>
 			</div>
 
-			<div class="col-sm-8 col-sm-offset-4">
-				<button type="submit" value="login" class="btn btn-primary">Submit</button>
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				<button type="submit" value="login" class="btn btn-primary">Login</button>
 				<a href="<?=site_url('home/register')?>" class="btn btn-success">Register</a>
 			</div>
 
