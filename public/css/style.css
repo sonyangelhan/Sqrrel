@@ -4,13 +4,41 @@
 	margin-right: auto;
 }
 
+.sqrrel-brand {
+	font-family: 'Lusitana', serif;
+	margin-top: 100px;
+	margin-bottom: 50px;
+}
+
+.sqrrel-brand h1 {
+	font-size: 80px;
+	font-weight: 700;
+	text-align: center;
+}
+
+.sqrrel-brand h2 {
+	font-size: 40px;
+	font-weight: 400;
+	text-align: center;
+}
+
+.sqrrel-brand-sm {
+	font-family: 'Lusitana', serif;
+	font-weight: 700;
+	font-size: 30px;
+}
+
 #tweetboard-main {
 	background: #f2f2f2;
-	height: 500px;
 }
 
 #dashboard-main {
 	background: #f2f2f2;
+}
+
+#board {
+	background: #f2f2f2;
+	margin-top: 70px;
 }
 
 .hide {
@@ -27,6 +55,17 @@
 
 hr {
 	border-color: black;
+}
+
+.input_query {
+	padding: 4px;
+	line-height: 1.428571429;
+	margin-bottom: 20px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	-webkit-transition: all .2s ease-in-out;
+	        transition: all .2s ease-in-out;
 }
 
 .input_todo {
@@ -60,4 +99,8 @@ hr {
 	border-radius: 4px;
 	-webkit-transition: all .2s ease-in-out;
 	        transition: all .2s ease-in-out;
+}
+
+footer {
+	margin-top: 20px;
 }
