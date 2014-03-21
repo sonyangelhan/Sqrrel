@@ -30,10 +30,14 @@
 
 #tweetboard-main {
 	background: #f2f2f2;
+	max-height: 1000px;
+	overflow: auto;
 }
 
 #dashboard-main {
 	background: #f2f2f2;
+	max-height: 1000px;
+	overflow: auto;
 }
 
 #board {
