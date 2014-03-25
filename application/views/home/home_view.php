@@ -21,9 +21,14 @@
 				</div>
 			</div>
 
-			<div class="col-sm-8 col-sm-offset-2 text-center">
-				<button type="submit" value="login" class="btn btn-primary">Login</button>
-				<a href="<?=site_url('home/register')?>" class="btn btn-success">Register</a>
+			<div class="row text-center">
+				<div class="row">
+					<button type="submit" value="login" class="btn btn-primary">Login</button>
+					<a href="<?=site_url('home/register')?>" class="btn btn-success">Register</a>
+				</div>
+				<div class="row" style="margin-top:3px;">
+					<a href="<?=site_url('home/register_com')?>" class="btn btn-success">Register Company</a>
+				</div>
 			</div>
 
 		</form>

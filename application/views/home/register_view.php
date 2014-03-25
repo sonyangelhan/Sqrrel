@@ -1,4 +1,11 @@
 <div class="row">
+	<div class="col-md-4 col-md-offset-4 sqrrel-brand-sm">
+		<h1>Sqrrel</h1>
+		<h2>Social & Lean CRM</h2>
+	</div>
+</div>
+
+<div class="row">
 	<div class="col-md-4 col-md-offset-4">
 
 		<div id="register_form_error" class="bg-danger"><p>fadsfdsf</p></div>
@@ -29,6 +36,20 @@
 				<label class="col-sm-4 control-label">Confirm Password</label>
 				<div class="col-sm-8">
 					<input type="password" name="confirm_password" class="form-control">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-4 control-label">Company Password</label>
+				<div class="col-sm-8">
+					<input type="password" name="com_password" class="form-control">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-4 control-label">Confirm Company Password</label>
+				<div class="col-sm-8">
+					<input type="password" name="com_confirm_password" class="form-control">
 				</div>
 			</div>
 

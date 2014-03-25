@@ -11,6 +11,7 @@ class Api extends CI_Controller
         $this->load->model('user_model');
         $this->load->model('todo_model');
         $this->load->model('note_model');
+        $this->load->model('com_model');
         $this->load->library('curl');
     }
 
@@ -49,6 +50,7 @@ class Api extends CI_Controller
     }
     
     // ------------------------------------------------------------------------
+    //Sony Mar 25
     
     public function register()
     {
@@ -57,6 +59,7 @@ class Api extends CI_Controller
         $this->form_validation->set_rules('login', 'Login', 'required|min_length[4]|max_length[16]|is_unique[user.login]');
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[user.email]');
         $this->form_validation->set_rules('password', 'Password', 'required|min_length[4]|max_length[16]|matches[confirm_password]');
+        $this->form_validation->set_rules('com_password', 'Company Password', 'required|min_length[4]|max_length[16]|matches[com_confirm_password]');
         
         if ($this->form_validation->run() == false) {
             $this->output->set_output(json_encode(array('result' => 0, 'error' => $this->form_validation->error_array())));
@@ -67,11 +70,28 @@ class Api extends CI_Controller
         $email = $this->input->post('email');
         $password = $this->input->post('password');
         $confirm_password = $this->input->post('confirm_password');
+        $com_password = $this->input->post('com_password');
+        $com_confirm_password = $this->input->post('com_confirm_password');
+
+        $result = $this->com_model->get(array(
+            'com_password' => hash('sha256', $com_password . SALT)
+        ));
+        
+        //$this->output->set_content_type('application_json');
+        
+        if ($result) {
+            $this->session->set_userdata(array('com_id' => $result[0]['com_id']));
+            $this->output->set_output(json_encode(array('result' => 1)));
+            return false;
+        }
+        
+        $this->output->set_output(json_encode(array('result' => 0)));
 
         $user_id = $this->user_model->insert(array(
             'login' => $login,
             'password' => hash('sha256', $password . SALT),
             'email' => $email
+            'com_id' => $this->session->userdata('com_id');
         ));
         
         if ($user_id) {
@@ -81,6 +101,39 @@ class Api extends CI_Controller
         }
         
         $this->output->set_output(json_encode(array('result' => 0, 'error' => 'User not created.')));
+    }
+
+    // ------------------------------------------------------------------------
+    //Register Company -  Sony Mar 24
+    
+    public function register_com()
+    {
+        $this->output->set_content_type('application_json');
+        
+        $this->form_validation->set_rules('com_name', 'Company name', 'required|min_length[4]|max_length[16]|is_unique[com.com_name]');
+        $this->form_validation->set_rules('password', 'Password', 'required|min_length[4]|max_length[16]|matches[confirm_password]');
+        
+        if ($this->form_validation->run() == false) {
+            $this->output->set_output(json_encode(array('result' => 0, 'error' => $this->form_validation->error_array())));
+            return false;
+        }
+        
+        $com_name = $this->input->post('com_name');
+        $password = $this->input->post('password');
+        $confirm_password = $this->input->post('confirm_password');
+
+        $com_id = $this->com_model->insert(array(
+            'com_name' => $com_name,
+            'password' => hash('sha256', $password . SALT),
+        ));
+        
+        if ($com_id) {
+            $this->session->set_userdata(array('com_id' => $com_id));
+            $this->output->set_output(json_encode(array('result' => 1)));
+            return false;
+        }
+        
+        $this->output->set_output(json_encode(array('result' => 0, 'error' => 'Company not created.')));
     }
     
     // ------------------------------------------------------------------------

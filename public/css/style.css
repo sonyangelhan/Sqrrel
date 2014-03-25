@@ -7,7 +7,7 @@
 .sqrrel-brand {
 	font-family: 'Lusitana', serif;
 	margin-top: 100px;
-	margin-bottom: 50px;
+	margin-bottom: 40px;
 }
 
 .sqrrel-brand h1 {
@@ -24,8 +24,20 @@
 
 .sqrrel-brand-sm {
 	font-family: 'Lusitana', serif;
+	margin-top: 30px;
+	margin-bottom: 15px;
+}
+
+.sqrrel-brand-sm h1 {
+	font-size: 60px;
 	font-weight: 700;
+	text-align: center;
+}
+
+.sqrrel-brand-sm h2 {
 	font-size: 30px;
+	font-weight: 400;
+	text-align: center;
 }
 
 #tweetboard-main {

@@ -20,4 +20,14 @@ class Home extends CI_Controller
 		$this->load->view('home/inc/footer_view');
 	}
 
+	//---------------------------------------------------------------------------------------------------
+	//Sony Mar24
+
+	public function register_com()
+	{
+		$this->load->view('home/inc/header_view');
+		$this->load->view('home/register_com_view');
+		$this->load->view('home/inc/footer_view');
+	}
+
 }
