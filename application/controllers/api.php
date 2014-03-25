@@ -90,8 +90,8 @@ class Api extends CI_Controller
         $user_id = $this->user_model->insert(array(
             'login' => $login,
             'password' => hash('sha256', $password . SALT),
-            'email' => $email
-            'com_id' => $this->session->userdata('com_id');
+            'email' => $email,
+            'com_id' => $this->session->userdata('com_id')
         ));
         
         if ($user_id) {
