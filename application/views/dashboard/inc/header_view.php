@@ -33,7 +33,7 @@
   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="wrapper">
       <div class="navbar-header">
-        <p class="navbar-brand sqrrel-brand-sm" href="#">Sqrrel</p>
+        <p class="navbar-brand sqrrel-brand-navbar" href="#">Sqrrel</p>
       </div>
       <ul class="nav navbar-nav navbar-right">
         <li class="active"><a href="#">Dashboard</a></li>

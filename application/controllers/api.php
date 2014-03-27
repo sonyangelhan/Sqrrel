@@ -42,6 +42,7 @@ class Api extends CI_Controller
         
         if ($result) {
             $this->session->set_userdata(array('user_id' => $result[0]['user_id']));
+            $this->session->set_userdata(array('com_id' => $result[0]['com_id']));
             $this->output->set_output(json_encode(array('result' => 1)));
             return false;
         }
@@ -111,7 +112,7 @@ class Api extends CI_Controller
         $this->output->set_content_type('application_json');
         
         $this->form_validation->set_rules('com_name', 'Company name', 'required|min_length[4]|max_length[16]|is_unique[com.com_name]');
-        $this->form_validation->set_rules('password', 'Password', 'required|min_length[4]|max_length[16]|matches[confirm_password]');
+        $this->form_validation->set_rules('com_password', 'Company Password', 'required|min_length[4]|max_length[16]|matches[confirm_password]');
         
         if ($this->form_validation->run() == false) {
             $this->output->set_output(json_encode(array('result' => 0, 'error' => $this->form_validation->error_array())));
@@ -119,12 +120,12 @@ class Api extends CI_Controller
         }
         
         $com_name = $this->input->post('com_name');
-        $password = $this->input->post('password');
+        $password = $this->input->post('com_password');
         $confirm_password = $this->input->post('confirm_password');
 
         $com_id = $this->com_model->insert(array(
             'com_name' => $com_name,
-            'password' => hash('sha256', $password . SALT),
+            'com_password' => hash('sha256', $password . SALT),
         ));
         
         if ($com_id) {
@@ -145,11 +146,11 @@ class Api extends CI_Controller
         if ($id != null) {
             $result = $this->todo_model->get(array(
                 'todo_id' => $id,
-                'user_id' => $this->session->userdata('user_id')
+                'com_id' => $this->session->userdata('com_id')
             ));
         } else {
             $result = $this->todo_model->get(array(
-                'user_id' => $this->session->userdata('user_id')
+                'com_id' => $this->session->userdata('com_id')
             ));
         }
         
@@ -174,7 +175,8 @@ class Api extends CI_Controller
         
         $result = $this->todo_model->insert(array(
             'content' => $this->input->post('content'),
-            'user_id' => $this->session->userdata('user_id')
+            'user_id' => $this->session->userdata('user_id'),
+            'com_id' => $this->session->userdata('com_id')
         ));
         
         if ($result) {
@@ -249,11 +251,11 @@ class Api extends CI_Controller
         if ($id != null) {
             $result = $this->note_model->get(array(
                 'note_id' => $id,
-                'user_id' => $this->session->userdata('user_id')
+                'com_id' => $this->session->userdata('com_id')
             ));
         } else {
             $result = $this->note_model->get(array(
-                'user_id' => $this->session->userdata('user_id')
+                'com_id' => $this->session->userdata('com_id')
             ));
         }
         
@@ -280,7 +282,8 @@ class Api extends CI_Controller
         $result = $this->note_model->insert(array(
             'title' => $this->input->post('title'),
             'content' => $this->input->post('content'),
-            'user_id' => $this->session->userdata('user_id')
+            'user_id' => $this->session->userdata('user_id'),
+            'com_id' => $this->session->userdata('com_id')
         ));
         
         if ($result) {

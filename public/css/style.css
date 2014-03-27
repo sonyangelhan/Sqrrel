@@ -22,6 +22,11 @@
 	text-align: center;
 }
 
+.sqrrel-brand-navbar {
+	font-family: 'Lusitana', serif;
+	font-size: 24px;
+}
+
 .sqrrel-brand-sm {
 	font-family: 'Lusitana', serif;
 	margin-top: 30px;
