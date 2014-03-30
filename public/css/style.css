@@ -47,13 +47,13 @@
 
 #tweetboard-main {
 	background: #f2f2f2;
-	max-height: 1000px;
+	height: 100vh;
 	overflow: auto;
 }
 
 #dashboard-main {
 	background: #f2f2f2;
-	max-height: 1000px;
+	height: 100vh;
 	overflow: auto;
 }
 
