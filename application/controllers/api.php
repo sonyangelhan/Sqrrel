@@ -77,13 +77,13 @@ class Api extends CI_Controller
         $result = $this->com_model->get(array(
             'com_password' => hash('sha256', $com_password . SALT)
         ));
-        
         //$this->output->set_content_type('application_json');
+
         
         if ($result) {
             $this->session->set_userdata(array('com_id' => $result[0]['com_id']));
             $this->output->set_output(json_encode(array('result' => 1)));
-            return false;
+//            return false;
         }
         
         $this->output->set_output(json_encode(array('result' => 0)));
