@@ -8,3 +8,5 @@ application/.DS_Store
 application/config/database.php
 application/config/constants.php
 system/*
+
+phpMyAdmin/*
