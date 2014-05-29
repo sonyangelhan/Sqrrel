@@ -5,5 +5,3 @@
 */cache/!index.html
 */cache/!.htaccess
 application/.DS_Store
-application/config/constants.php
-system/*
