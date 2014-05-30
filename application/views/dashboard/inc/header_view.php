@@ -17,6 +17,10 @@
     <script src="<?=base_url()?>public/js/tweetnote/dashboard.js"></script>
     <script src='https://cdn.firebase.com/v0/firebase.js'></script>
     <script type='text/javascript' src='https://cdn.firebase.com/js/simple-login/1.3.0/firebase-simple-login.js'></script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
     <script>$(function() { var dashboard = new Dashboard(); });</script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

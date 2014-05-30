@@ -20,6 +20,8 @@
 
         <div class="tweets col-md-10 col-md-offset-1">
 
+            <div class="drag_tweets">123</div>
+
         <!--
         <blockquote class="twitter-tweet"><p>GRAB <a href="https://twitter.com/search?q=%23skate&amp;src=hash">#skate</a> <a href="https://twitter.com/search?q=%23skateboard&amp;src=hash">#skateboard</a> <a href="https://twitter.com/search?q=%23skateboarding&amp;src=hash">#skateboarding</a> <a href="http://t.co/RuyaivWiOB">pic.twitter.com/RuyaivWiOB</a></p>&mdash; Skate (@SKATE) <a href="https://twitter.com/SKATE/statuses/392351081310609409">October 21, 2013</a></blockquote>
         <blockquote class="twitter-tweet"><p>GRAB <a href="https://twitter.com/search?q=%23skate&amp;src=hash">#skate</a> <a href="https://twitter.com/search?q=%23skateboard&amp;src=hash">#skateboard</a> <a href="https://twitter.com/search?q=%23skateboarding&amp;src=hash">#skateboarding</a> <a href="http://t.co/RuyaivWiOB">pic.twitter.com/RuyaivWiOB</a></p>&mdash; Skate (@SKATE) <a href="https://twitter.com/SKATE/statuses/392351081310609409">October 21, 2013</a></blockquote>
@@ -159,10 +161,69 @@
                     alert('return 0 data');
                   } else {
                     obj.forEach(function(entry) {
-                        $('.tweets').append(entry);      
+                        $('.tweets').append("<div class='drag_tweets'>"+entry+"</div>");      
                     });
                   }
               });
+            
+          $(function() {
+            $( ".drag_tweets" ).draggable({ 
+
+            revert: "valid",
+
+            appendTo: 'body',
+            containment: 'window',
+            scroll: false,
+            helper: 'clone',
+            start: function(){
+                $(this).hide();             
+            },
+            stop: function(){
+                $(this).show()
             }
+        });
+
       });
+
+  }
 </script>
+
+  <script>
+  $(function() {
+    $( ".drag_tweets" ).draggable({ 
+
+    revert: "valid",
+
+    appendTo: 'body',
+    containment: 'window',
+    scroll: false,
+    helper: 'clone',
+    start: function(){
+        $(this).hide();             
+    },
+    stop: function(){
+        $(this).show()
+    }
+});
+ 
+    $( "#create_note" ).droppable({
+      activeClass: "ui-state-default",
+      hoverClass: "ui-state-hover",
+      drop: function( event, ui ) {
+        alert("dropped!");
+      }
+    });
+
+    $( "#create_todo" ).droppable({
+      activeClass: "ui-state-default",
+      hoverClass: "ui-state-hover",
+      drop: function( event, ui ) {
+        alert("dropped!");
+      }
+    });
+
+
+
+  });
+  </script>
+
