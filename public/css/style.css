@@ -125,3 +125,7 @@ hr {
 footer {
 	margin-top: 20px;
 }
+
+.drag_tweets {
+	padding: 4px 4px 4px 4px;
+}

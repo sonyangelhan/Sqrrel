@@ -20,8 +20,6 @@
 
         <div class="tweets col-md-10 col-md-offset-1">
 
-            <div class="drag_tweets">123</div>
-
         <!--
         <blockquote class="twitter-tweet"><p>GRAB <a href="https://twitter.com/search?q=%23skate&amp;src=hash">#skate</a> <a href="https://twitter.com/search?q=%23skateboard&amp;src=hash">#skateboard</a> <a href="https://twitter.com/search?q=%23skateboarding&amp;src=hash">#skateboarding</a> <a href="http://t.co/RuyaivWiOB">pic.twitter.com/RuyaivWiOB</a></p>&mdash; Skate (@SKATE) <a href="https://twitter.com/SKATE/statuses/392351081310609409">October 21, 2013</a></blockquote>
         <blockquote class="twitter-tweet"><p>GRAB <a href="https://twitter.com/search?q=%23skate&amp;src=hash">#skate</a> <a href="https://twitter.com/search?q=%23skateboard&amp;src=hash">#skateboard</a> <a href="https://twitter.com/search?q=%23skateboarding&amp;src=hash">#skateboarding</a> <a href="http://t.co/RuyaivWiOB">pic.twitter.com/RuyaivWiOB</a></p>&mdash; Skate (@SKATE) <a href="https://twitter.com/SKATE/statuses/392351081310609409">October 21, 2013</a></blockquote>
@@ -165,10 +163,12 @@
                     });
                   }
               });
-            
-          $(function() {
-            $( ".drag_tweets" ).draggable({ 
+          
 
+    $('body').on("click", '.drag_tweets', function () {
+
+            $(".drag_tweets").draggable({ 
+            iframeFix: true,
             revert: "valid",
 
             appendTo: 'body',
@@ -176,36 +176,29 @@
             scroll: false,
             helper: 'clone',
             start: function(){
+                $("iframe").css('z-index', '-1');
                 $(this).hide();             
             },
             stop: function(){
+                $("iframe").css('z-index', '0');
                 $(this).show()
             }
         });
+    });
 
-      });
 
   }
+});
+
+
+
+
+
 </script>
 
   <script>
   $(function() {
-    $( ".drag_tweets" ).draggable({ 
-
-    revert: "valid",
-
-    appendTo: 'body',
-    containment: 'window',
-    scroll: false,
-    helper: 'clone',
-    start: function(){
-        $(this).hide();             
-    },
-    stop: function(){
-        $(this).show()
-    }
-});
- 
+     
     $( "#create_note" ).droppable({
       activeClass: "ui-state-default",
       hoverClass: "ui-state-hover",
@@ -221,8 +214,6 @@
         alert("dropped!");
       }
     });
-
-
 
   });
   </script>

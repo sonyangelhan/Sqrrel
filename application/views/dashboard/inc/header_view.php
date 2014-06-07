@@ -43,7 +43,7 @@
         <li class="active"><a href="#">Dashboard</a></li>
         <li><a href="#">Account</a></li>
         <li><a href="<?=site_url('dashboard/logout')?>">Logout</a></li>
-        <p class="navbar-text">Signed in as <a href="#" class="navbar-link">XXX</a></p>
+        <p class="navbar-text">Signed in as <a href="#" class="navbar-link">terry81811</a></p>
       </ul>
     </div>
   </nav>
